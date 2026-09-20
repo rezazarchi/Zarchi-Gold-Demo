@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zarchi Astra - دموی طراحی طلا با هوش مصنوعی" />
+  <title>Zarchi Astra | طراحی طلا با هوش مصنوعی</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#07090b;
+      --bg2:#0b1014;
+      --panel:rgba(15,21,26,.78);
+      --panel2:rgba(19,26,32,.9);
+      --line:rgba(137,230,255,.13);
+      --line-gold:rgba(239,205,129,.18);
+      --text:#f4f7f8;
+      --muted:#98a6ae;
+      --cyan:#77e3ff;
+      --cyan2:#b7f2ff;
+      --violet:#a98cff;
+      --gold:#e2ba67;
+      --gold2:#ffe4a4;
+      --green:#6fe1a6;
+      --red:#f28f9b;
+      --shadow:0 30px 90px rgba(0,0,0,.42);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family:"Vazirmatn",sans-serif;
+      background:
+        radial-gradient(circle at 88% 8%,rgba(119,227,255,.10),transparent 28%),
+        radial-gradient(circle at 12% 20%,rgba(169,140,255,.08),transparent 25%),
+        radial-gradient(circle at 55% 72%,rgba(226,186,103,.07),transparent 30%),
+        linear-gradient(180deg,#07090b,#091015 56%,#07090b);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(119,227,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(119,227,255,.025) 1px,transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 86%);
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      opacity:.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    }
+
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1220px,calc(100% - 34px));margin:auto}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:80;
+      border-bottom:1px solid rgba(255,255,255,.055);
+      background:rgba(7,9,11,.72);
+      backdrop-filter:blur(20px);
+    }
+
+    nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:13px;
+      position:relative;
+      display:grid;
+      place-items:center;
+      color:#071014;
+      font-family:Georgia,serif;
+      font-weight:800;
+      background:linear-gradient(135deg,var(--cyan2),#8caaff 52%,var(--gold2));
+      box-shadow:0 0 30px rgba(119,227,255,.16);
+    }
+
+    .brand-mark::before{
+      content:"Z";
+      font-size:1.2rem;
+    }
+
+    .brand strong{
+      display:block;
+      font-family:Georgia,serif;
+      letter-spacing:.14em;
+      font-size:1.06rem;
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:.67rem;
+      margin-top:2px;
+    }
+
+    .nav-center{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      color:#c9f7ff;
+      border:1px solid rgba(119,227,255,.16);
+      background:rgba(119,227,255,.035);
+      font-size:.73rem;
+    }
+
+    .status-dot{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 16px rgba(111,225,166,.65);
+      animation:pulse 1.7s ease-in-out infinite;
+    }
+
+    .back{
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.08);
+      color:#c8d0d4;
+      font-size:.78rem;
+      transition:.2s ease;
+    }
+
+    .back:hover{border-color:rgba(119,227,255,.24);color:#fff}
+
+    .intro{
+      padding:60px 0 28px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      align-items:center;
+      gap:42px;
+    }
+
+    .ai-tag{
+      display:inline-flex;
+      gap:9px;
+      align-items:center;
+      margin-bottom:16px;
+      padding:8px 11px;
+      border:1px solid rgba(119,227,255,.14);
+      border-radius:999px;
+      background:rgba(119,227,255,.035);
+      color:var(--cyan2);
+      font-size:.73rem;
+    }
+
+    .ai-tag svg{width:15px;height:15px}
+
+    .intro h1{
+      margin:0;
+      max-width:760px;
+      font-size:clamp(2.5rem,5.5vw,5.3rem);
+      font-weight:350;
+      line-height:1.08;
+      letter-spacing:-.035em;
+    }
+
+    .intro h1 span{
+      color:transparent;
+      background:linear-gradient(90deg,var(--cyan),#c9c0ff 46%,var(--gold2));
+      -webkit-background-clip:text;
+      background-clip:text;
+    }
+
+    .intro p{
+      color:var(--muted);
+      line-height:2;
+      max-width:720px;
+      margin:22px 0 0;
+    }
+
+    .core{
+      position:relative;
+      min-height:340px;
+      display:grid;
+      place-items:center;
+    }
+
+    .core-orb{
+      width:230px;
+      aspect-ratio:1;
+      border-radius:50%;
+      position:relative;
+      background:
+        radial-gradient(circle at 36% 30%,rgba(255,255,255,.85),transparent 3%),
+        radial-gradient(circle at 40% 35%,rgba(119,227,255,.38),transparent 17%),
+        radial-gradient(circle at 55% 60%,rgba(169,140,255,.30),transparent 35%),
+        linear-gradient(145deg,#17232d,#0b1015);
+      box-shadow:
+        inset 0 0 55px rgba(119,227,255,.14),
+        0 0 70px rgba(119,227,255,.11),
+        0 30px 80px rgba(0,0,0,.45);
+      animation:float 6s ease-in-out infinite;
+    }
+
+    .core-orb::before,.core-orb::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      border:1px solid rgba(119,227,255,.22);
+      inset:-22px;
+      animation:spin 14s linear infinite;
+    }
+
+    .core-orb::after{
+      inset:-48px;
+      border-style:dashed;
+      border-color:rgba(169,140,255,.18);
+      animation-duration:21s;
+      animation-direction:reverse;
+    }
+
+    .core-label{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      font-family:Georgia,serif;
+      letter-spacing:.12em;
+      color:#eafcff;
+    }
+
+    .core-label strong{font-size:1.35rem}
+    .core-label small{
+      display:block;
+      font-family:"Vazirmatn";
+      margin-top:6px;
+      font-size:.64rem;
+      letter-spacing:0;
+      color:#a9bec8;
+    }
+
+    .workspace{
+      display:grid;
+      grid-template-columns:250px minmax(0,1fr);
+      gap:18px;
+      padding-bottom:80px;
+    }
+
+    .steps{
+      position:sticky;
+      top:96px;
+      align-self:start;
+      border:1px solid rgba(255,255,255,.06);
+      background:rgba(10,14,17,.66);
+      backdrop-filter:blur(15px);
+      border-radius:24px;
+      padding:14px;
+    }
+
+    .step{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:14px;
+      border-radius:15px;
+      color:#75858e;
+      transition:.25s ease;
+    }
+
+    .step + .step{margin-top:5px}
+    .step .n{
+      width:32px;height:32px;border-radius:10px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.08);
+      flex:0 0 auto;
+      font-size:.75rem;
+    }
+
+    .step strong{display:block;font-size:.82rem}
+    .step small{display:block;font-size:.64rem;margin-top:3px}
+
+    .step.active{
+      color:#eafcff;
+      background:linear-gradient(90deg,rgba(119,227,255,.08),rgba(169,140,255,.035));
+      border:1px solid rgba(119,227,255,.10);
+    }
+
+    .step.active .n{
+      color:#061116;
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--cyan),#aa9cff);
+      box-shadow:0 0 20px rgba(119,227,255,.18);
+    }
+
+    .step.done{color:#9db8a8}
+    .step.done .n{color:#07110d;background:var(--green);border-color:transparent}
+
+    .panel{
+      display:none;
+      border:1px solid rgba(255,255,255,.065);
+      border-radius:30px;
+      background:linear-gradient(180deg,rgba(18,24,29,.82),rgba(11,16,20,.78));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel.active{display:block;animation:panelIn .38s ease both}
+
+    .panel-head{
+      padding:28px 30px 20px;
+      border-bottom:1px solid rgba(255,255,255,.055);
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-start;
+    }
+
+    .panel-head h2{margin:0;font-size:1.45rem;font-weight:600}
+    .panel-head p{margin:7px 0 0;color:var(--muted);font-size:.82rem;line-height:1.8}
+
+    .badge{
+      padding:7px 10px;
+      border-radius:999px;
+      color:#bff5ff;
+      border:1px solid rgba(119,227,255,.15);
+      font-size:.66rem;
+      white-space:nowrap;
+    }
+
+    .panel-body{padding:28px 30px}
+
+    .prompt-box{
+      position:relative;
+      border:1px solid rgba(119,227,255,.13);
+      border-radius:24px;
+      padding:5px;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(119,227,255,.055),transparent 28%),
+        rgba(5,9,12,.46);
+    }
+
+    .prompt-box::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:24px;
+      padding:1px;
+      background:linear-gradient(90deg,transparent,rgba(119,227,255,.5),rgba(169,140,255,.45),transparent);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+      opacity:.6;
+    }
+
+    textarea{
+      width:100%;
+      min-height:175px;
+      resize:vertical;
+      border:0;
+      outline:0;
+      color:#eff9fb;
+      background:transparent;
+      padding:20px;
+      line-height:2;
+      font-size:.95rem;
+    }
+
+    textarea::placeholder{color:#63747e}
+
+    .prompt-tools{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:8px;
+      border-top:1px solid rgba(255,255,255,.055);
+    }
+
+    .chips{
+      display:flex;
+      gap:7px;
+      flex-wrap:wrap;
+      margin:18px 0 0;
+    }
+
+    .chip{
+      border:1px solid rgba(255,255,255,.07);
+      color:#9eabb2;
+      background:rgba(255,255,255,.025);
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:.72rem;
+      transition:.2s ease;
+    }
+
+    .chip:hover{
+      color:#eafdff;
+      border-color:rgba(119,227,255,.2);
+      background:rgba(119,227,255,.05);
+    }
+
+    .btn{
+      min-height:46px;
+      border:0;
+      border-radius:14px;
+      padding:0 18px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      transition:.22s ease;
+    }
+
+    .btn-primary{
+      color:#071014;
+      font-weight:700;
+      background:linear-gradient(135deg,var(--cyan),#b4a1ff 54%,var(--gold2));
+      box-shadow:0 12px 34px rgba(119,227,255,.12);
+    }
+
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 17px 42px rgba(119,227,255,.18)}
+    .btn-primary:disabled{opacity:.55;cursor:wait;transform:none}
+
+    .btn-secondary{
+      color:#dce5e8;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.025);
+    }
+
+    .btn-secondary:hover{border-color:rgba(119,227,255,.2)}
+
+    .micro{
+      color:#697981;
+      font-size:.66rem;
+      line-height:1.7;
+      margin-top:14px;
+    }
+
+    .ai-thinking{
+      display:none;
+      margin-top:18px;
+      border:1px solid rgba(119,227,255,.10);
+      border-radius:18px;
+      padding:15px;
+      color:#b5c4cb;
+      background:rgba(119,227,255,.025);
+      font-size:.78rem;
+    }
+
+    .ai-thinking.show{display:flex;align-items:center;gap:12px}
+    .thinking-dots{display:flex;gap:4px}
+    .thinking-dots i{
+      width:6px;height:6px;border-radius:50%;background:var(--cyan);
+      animation:dots 1.1s ease-in-out infinite;
+    }
+    .thinking-dots i:nth-child(2){animation-delay:.15s}
+    .thinking-dots i:nth-child(3){animation-delay:.3s}
+
+    .design-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:18px;
+    }
+
+    .preview{
+      min-height:480px;
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(119,227,255,.10);
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 50% 42%,rgba(119,227,255,.08),transparent 34%),
+        radial-gradient(circle at 50% 58%,rgba(226,186,103,.07),transparent 33%),
+        #090e12;
+    }
+
+    .preview::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(119,227,255,.022) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(119,227,255,.022) 1px,transparent 1px);
+      background-size:28px 28px;
+    }
+
+    .scan{
+      position:absolute;
+      inset:0 0 auto;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+      box-shadow:0 0 15px rgba(119,227,255,.55);
+      animation:scan 4.3s ease-in-out infinite;
+      opacity:.48;
+    }
+
+    .design-svg{
+      width:min(82%,440px);
+      position:relative;
+      z-index:2;
+      filter:drop-shadow(0 28px 34px rgba(0,0,0,.45));
+      animation:float 6s ease-in-out infinite;
+    }
+
+    .preview-label{
+      position:absolute;
+      z-index:3;
+      bottom:17px;
+      left:17px;
+      direction:ltr;
+      color:#73858e;
+      font:600 .65rem/1.5 monospace;
+      letter-spacing:.06em;
+    }
+
+    .analysis{
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+
+    .analysis-card{
+      padding:17px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.025);
+    }
+
+    .analysis-card label{
+      display:block;
+      color:#71838c;
+      font-size:.66rem;
+      margin-bottom:7px;
+    }
+
+    .analysis-card strong{font-size:.87rem;font-weight:500;line-height:1.8}
+    .analysis-card.accent{
+      border-color:rgba(119,227,255,.13);
+      background:linear-gradient(100deg,rgba(119,227,255,.05),rgba(169,140,255,.03));
+    }
+
+    .variation-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:9px;
+      margin-top:4px;
+    }
+
+    .variation{
+      padding:11px;
+      border-radius:13px;
+      border:1px solid rgba(255,255,255,.06);
+      text-align:center;
+      color:#8c9aa1;
+      background:rgba(255,255,255,.02);
+      font-size:.68rem;
+      cursor:pointer;
+    }
+
+    .variation.selected{
+      color:#dffaff;
+      border-color:rgba(119,227,255,.24);
+      background:rgba(119,227,255,.06);
+    }
+
+    .panel-actions{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:20px 30px 28px;
+      border-top:1px solid rgba(255,255,255,.05);
+    }
+
+    .config-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .field label{
+      display:block;
+      color:#839199;
+      font-size:.72rem;
+      margin-bottom:8px;
+    }
+
+    .field input,.field select{
+      width:100%;
+      min-height:48px;
+      padding:0 13px;
+      border-radius:13px;
+      outline:0;
+      color:#e8f1f3;
+      border:1px solid rgba(255,255,255,.075);
+      background:#0c1216;
+    }
+
+    .field input:focus,.field select:focus{
+      border-color:rgba(119,227,255,.35);
+      box-shadow:0 0 0 3px rgba(119,227,255,.05);
+    }
+
+    .range-row{
+      display:grid;
+      grid-template-columns:1fr 90px;
+      gap:12px;
+      align-items:center;
+    }
+
+    input[type="range"]{
+      accent-color:#86e6ff;
+      padding:0;
+      height:42px;
+    }
+
+    .market-strip{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:center;
+      margin:18px 0;
+      padding:15px 17px;
+      border:1px solid rgba(226,186,103,.13);
+      border-radius:16px;
+      background:rgba(226,186,103,.035);
+    }
+
+    .market-strip span{color:#8e8b82;font-size:.72rem}
+    .market-strip strong{color:var(--gold2);font-size:.9rem}
+    .market-strip .live{color:var(--green);font-size:.65rem}
+
+    .price-card{
+      border:1px solid rgba(226,186,103,.15);
+      border-radius:22px;
+      overflow:hidden;
+      background:linear-gradient(145deg,rgba(226,186,103,.07),rgba(255,255,255,.018));
+    }
+
+    .price-lines{padding:20px}
+    .price-line{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      padding:11px 0;
+      color:#9ea7aa;
+      font-size:.78rem;
+      border-bottom:1px solid rgba(255,255,255,.045);
+    }
+    .price-line:last-child{border-bottom:0}
+    .price-line b{color:#dde4e5;font-weight:500}
+
+    .total{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      padding:20px;
+      border-top:1px solid rgba(226,186,103,.13);
+      background:rgba(226,186,103,.035);
+    }
+
+    .total span{color:#aaa58f;font-size:.78rem}
+    .total strong{color:var(--gold2);font-size:1.45rem}
+
+    .price-note{
+      color:#64727a;
+      font-size:.65rem;
+      line-height:1.8;
+      margin-top:12px;
+    }
+
+    .shipping-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .shipping-grid .wide{grid-column:1/-1}
+
+    .summary{
+      margin-top:22px;
+      padding:18px;
+      border:1px solid rgba(119,227,255,.10);
+      border-radius:18px;
+      background:rgba(119,227,255,.025);
+      display:none;
+    }
+
+    .summary.show{display:block;animation:panelIn .35s ease}
+    .summary h3{margin:0 0 10px;font-size:1rem}
+    .summary p{margin:5px 0;color:#99a8af;font-size:.77rem;line-height:1.8}
+    .order-id{color:var(--cyan2)!important;font-family:monospace}
+
+    .done-card{
+      text-align:center;
+      padding:50px 22px;
+    }
+
+    .done-icon{
+      width:76px;height:76px;border-radius:24px;
+      display:grid;place-items:center;
+      margin:0 auto 18px;
+      color:#06100d;
+      font-size:1.8rem;
+      background:linear-gradient(135deg,var(--green),var(--cyan));
+      box-shadow:0 0 42px rgba(111,225,166,.18);
+    }
+
+    .done-card h2{font-size:1.7rem;margin:0 0 10px}
+    .done-card p{max-width:620px;margin:0 auto;color:var(--muted);line-height:1.9}
+    .demo-warning{
+      max-width:700px;
+      margin:24px auto 0;
+      padding:13px 15px;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:14px;
+      color:#78878e;
+      font-size:.7rem;
+      line-height:1.8;
+      background:rgba(255,255,255,.02);
+    }
+
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.82)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes scan{0%,100%{top:8%}50%{top:92%}}
+    @keyframes dots{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-4px);opacity:1}}
+    @keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+    @media(max-width:950px){
+      .intro{grid-template-columns:1fr;padding-top:45px}
+      .core{min-height:280px}
+      .workspace{grid-template-columns:1fr}
+      .steps{position:static;display:grid;grid-template-columns:repeat(4,1fr)}
+      .step{padding:10px;justify-content:center}
+      .step>div:last-child{display:none}
+      .design-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:650px){
+      .container{width:min(100% - 20px,1220px)}
+      nav{min-height:68px}.nav-center{display:none}
+      .brand small{display:none}
+      .intro{padding-top:34px;gap:12px}
+      .core{min-height:250px}
+      .core-orb{width:165px}
+      .panel-head,.panel-body,.panel-actions{padding-right:18px;padding-left:18px}
+      .panel-head{flex-direction:column}
+      .config-grid,.shipping-grid{grid-template-columns:1fr}
+      .shipping-grid .wide{grid-column:auto}
+      .steps{gap:4px;padding:8px}
+      .step{padding:8px}
+      .preview{min-height:370px}
+      .prompt-tools{align-items:stretch;flex-direction:column}
+      .prompt-tools .btn{width:100%}
+      .panel-actions{align-items:stretch;flex-direction:column-reverse}
+      .panel-actions .btn{width:100%}
+      .market-strip{align-items:flex-start;flex-direction:column}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    }
+  </style>
+</head>
+
+<body>
+<div class="topbar">
+  <div class="container">
+    <nav>
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>
+          <strong>ZARCHI</strong>
+          <small>Gold & Fine Jewelry</small>
+        </span>
+      </a>
+
+      <div class="nav-center">
+        <span class="status-dot"></span>
+        ASTRA AI DESIGN STUDIO · DEMO
+      </div>
+
+      <a class="back" href="index.html">بازگشت به فروشگاه</a>
+    </nav>
+  </div>
+</div>
+
+<main class="container">
+  <section class="intro">
+    <div>
+      <div class="ai-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+        Zarchi Astra · AI Jewelry Co-Designer
+      </div>
+
+      <h1>
+        آنچه در ذهن داری را
+        <span>به طلا تبدیل کن.</span>
+      </h1>
+
+      <p>
+        ایده‌ات را با زبان خودت بنویس. Astra سبک، فرم، جزئیات و متریال را
+        تحلیل می‌کند، یک کانسپت طراحی می‌سازد، وزن و هزینه ساخت را برآورد می‌کند
+        و بعد از تأیید، سفارش را تا اطلاعات ارسال آماده می‌کند.
+      </p>
+    </div>
+
+    <div class="core" aria-hidden="true">
+      <div class="core-orb">
+        <div class="core-label">
+          <div>
+            <strong>ASTRA</strong>
+            <small>AI JEWELRY CORE</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <aside class="steps" aria-label="مراحل طراحی">
+      <div class="step active" data-step-indicator="1">
+        <div class="n">۱</div>
+        <div><strong>ایده</strong><small>Prompt شما</small></div>
+      </div>
+      <div class="step" data-step-indicator="2">
+        <div class="n">۲</div>
+        <div><strong>طراحی</strong><small>پیشنهاد Astra</small></div>
+      </div>
+      <div class="step" data-step-indicator="3">
+        <div class="n">۳</div>
+        <div><strong>قیمت</strong><small>برآورد نهایی</small></div>
+      </div>
+      <div class="step" data-step-indicator="4">
+        <div class="n">۴</div>
+        <div><strong>تحویل</strong><small>مشخصات سفارش</small></div>
+      </div>
+    </aside>
+
+    <div>
+      <!-- STEP 1 -->
+      <section class="panel active" data-panel="1">
+        <div class="panel-head">
+          <div>
+            <h2>چه طلایی در ذهن داری؟</h2>
+            <p>هرچقدر جزئیات بیشتری بدهی، Astra کانسپت دقیق‌تری برای دمو می‌سازد.</p>
+          </div>
+          <span class="badge">STEP 01 · PROMPT</span>
+        </div>
+
+        <div class="panel-body">
+          <div class="prompt-box">
+            <textarea id="promptInput" placeholder="مثلاً: یک انگشتر مینیمال برای هدیه سالگرد می‌خواهم؛ طلای زرد، فرم موج نرم، یک نگین ظریف مرکزی، مدرن باشد ولی خیلی شلوغ نباشد..."></textarea>
+            <div class="prompt-tools">
+              <button class="btn btn-secondary" type="button" id="surprisePrompt">✦ ایده تصادفی</button>
+              <button class="btn btn-primary" type="button" id="generateBtn">طراحی با Astra ✧</button>
+            </div>
+          </div>
+
+          <div class="chips">
+            <button class="chip" type="button" data-chip="انگشتر">انگشتر</button>
+            <button class="chip" type="button" data-chip="گردنبند">گردنبند</button>
+            <button class="chip" type="button" data-chip="دستبند">دستبند</button>
+            <button class="chip" type="button" data-chip="مینیمال">مینیمال</button>
+            <button class="chip" type="button" data-chip="الهام از معماری ایرانی">الهام از معماری ایرانی</button>
+            <button class="chip" type="button" data-chip="نگین ظریف">نگین ظریف</button>
+            <button class="chip" type="button" data-chip="طلای زرد">طلای زرد</button>
+          </div>
+
+          <div class="ai-thinking" id="thinking">
+            <div class="thinking-dots"><i></i><i></i><i></i></div>
+            Astra در حال تحلیل فرم، تناسب، متریال و امکان ساخت است...
+          </div>
+
+          <div class="micro">
+            این صفحه یک prototype کاملاً static است. پاسخ Astra در این نسخه به‌صورت شبیه‌سازی‌شده در مرورگر ساخته می‌شود و هیچ promptی به سرویس هوش مصنوعی خارجی ارسال نمی‌شود.
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="panel" data-panel="2">
+        <div class="panel-head">
+          <div>
+            <h2>کانسپت پیشنهادی Astra</h2>
+            <p>یک برداشت بصری و مشخصات پیشنهادی بر اساس prompt شما.</p>
+          </div>
+          <span class="badge">STEP 02 · DESIGN</span>
+        </div>
+
+        <div class="panel-body">
+          <div class="design-grid">
+            <div class="preview">
+              <div class="scan"></div>
+              <div id="designPreview" class="design-svg"></div>
+              <div class="preview-label">ASTRA / GENERATIVE CONCEPT / v0.1</div>
+            </div>
+
+            <div class="analysis">
+              <div class="analysis-card accent">
+                <label>تفسیر Astra</label>
+                <strong id="aiInterpretation">—</strong>
+              </div>
+              <div class="analysis-card">
+                <label>نوع قطعه</label>
+                <strong id="aiType">—</strong>
+              </div>
+              <div class="analysis-card">
+                <label>زبان طراحی</label>
+                <strong id="aiStyle">—</strong>
+              </div>
+              <div class="analysis-card">
+                <label>متریال پیشنهادی</label>
+                <strong id="aiMaterial">طلای زرد ۱۸ عیار</strong>
+              </div>
+              <div class="analysis-card">
+                <label>وزن اولیه تخمینی</label>
+                <strong><span id="aiWeight">—</span> گرم</strong>
+              </div>
+              <div class="analysis-card">
+                <label>Variation</label>
+                <div class="variation-row">
+                  <div class="variation selected" data-variation="soft">Soft</div>
+                  <div class="variation" data-variation="bold">Bold</div>
+                  <div class="variation" data-variation="organic">Organic</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn btn-secondary" type="button" data-back="1">بازگشت و اصلاح prompt</button>
+          <button class="btn btn-primary" type="button" id="approveDesign">تأیید کانسپت و محاسبه قیمت</button>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="panel" data-panel="3">
+        <div class="panel-head">
+          <div>
+            <h2>برآورد و قیمت نهایی دمو</h2>
+            <p>قیمت طلا از بازار زنده دریافت می‌شود و هزینه ساخت طبق پارامترهای دموی Zarchi محاسبه می‌شود.</p>
+          </div>
+          <span class="badge">STEP 03 · PRICE</span>
+        </div>
+
+        <div class="panel-body">
+          <div class="config-grid">
+            <div class="field">
+              <label for="karatSelect">عیار</label>
+              <select id="karatSelect">
+                <option value="18">۱۸ عیار</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="finishSelect">پرداخت سطح</label>
+              <select id="finishSelect">
+                <option value="polished">براق آینه‌ای</option>
+                <option value="matte">مات ابریشمی</option>
+                <option value="hammered">چکشی ظریف</option>
+              </select>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="weightRange">وزن نهایی برای این دمو</label>
+              <div class="range-row">
+                <input id="weightRange" type="range" min="1.5" max="15" step="0.1" value="4.2">
+                <input id="weightNumber" type="number" min="1.5" max="15" step="0.1" value="4.2">
+              </div>
+            </div>
+          </div>
+
+          <div class="market-strip">
+            <div>
+              <span>قیمت زنده طلای ۱۸ عیار</span><br>
+              <strong id="liveGoldPrice">در حال دریافت...</strong>
+            </div>
+            <span class="live" id="marketState">● اتصال به BrsApi</span>
+          </div>
+
+          <div class="price-card">
+            <div class="price-lines">
+              <div class="price-line"><span>ارزش طلای مصرفی</span><b id="metalCost">—</b></div>
+              <div class="price-line"><span>اجرت طراحی و ساخت Astra</span><b id="makingCost">—</b></div>
+              <div class="price-line"><span>هزینه جزئیات / نگین دمو</span><b id="detailCost">—</b></div>
+              <div class="price-line"><span>بسته‌بندی و آماده‌سازی</span><b id="packagingCost">رایگان</b></div>
+            </div>
+            <div class="total">
+              <span>قیمت نهایی این کانفیگ</span>
+              <strong id="totalPrice">—</strong>
+            </div>
+          </div>
+
+          <div class="price-note">
+            این محاسبه برای نمایش flow محصول است. «قیمت نهایی دمو» بر اساس قیمت زنده هر گرم طلای ۱۸ عیار، وزن انتخابی و ضرایب نمونه‌ی اجرت/جزئیات محاسبه می‌شود. در محصول واقعی، قوانین مالیاتی، اجرت واقعی کارگاه، سنگ و هزینه‌های فروش باید از backend و سیستم حسابداری فروشگاه دریافت شوند.
+          </div>
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn btn-secondary" type="button" data-back="2">بازگشت به طراحی</button>
+          <button class="btn btn-primary" type="button" id="acceptPrice">تأیید قیمت و اطلاعات ارسال</button>
+        </div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="panel" data-panel="4">
+        <div class="panel-head">
+          <div>
+            <h2>مشخصات مشتری و ارسال</h2>
+            <p>آخرین مرحله دمو؛ اطلاعات فقط در همین صفحه استفاده می‌شود و جایی ارسال یا ذخیره نمی‌شود.</p>
+          </div>
+          <span class="badge">STEP 04 · DELIVERY</span>
+        </div>
+
+        <div class="panel-body">
+          <form id="shippingForm">
+            <div class="shipping-grid">
+              <div class="field">
+                <label for="fullName">نام و نام خانوادگی</label>
+                <input id="fullName" required autocomplete="name" placeholder="مثلاً رضا زارچی">
+              </div>
+              <div class="field">
+                <label for="phone">شماره تماس</label>
+                <input id="phone" required inputmode="tel" autocomplete="tel" placeholder="09xxxxxxxxx">
+              </div>
+              <div class="field">
+                <label for="city">شهر</label>
+                <input id="city" required autocomplete="address-level2" placeholder="تهران">
+              </div>
+              <div class="field">
+                <label for="postalCode">کد پستی</label>
+                <input id="postalCode" inputmode="numeric" autocomplete="postal-code" placeholder="اختیاری">
+              </div>
+              <div class="field wide">
+                <label for="address">آدرس کامل</label>
+                <input id="address" required autocomplete="street-address" placeholder="خیابان، کوچه، پلاک، واحد">
+              </div>
+              <div class="field wide">
+                <label for="deliveryNote">یادداشت سفارش</label>
+                <input id="deliveryNote" placeholder="مثلاً بسته‌بندی هدیه، متن کارت، محدودیت زمانی تحویل...">
+              </div>
+            </div>
+
+            <div class="summary" id="orderSummary">
+              <h3>خلاصه سفارش</h3>
+              <p id="summaryDesign"></p>
+              <p id="summaryPrice"></p>
+              <p id="summaryAddress"></p>
+              <p class="order-id" id="summaryOrder"></p>
+            </div>
+
+            <div style="margin-top:20px;display:flex;justify-content:flex-end">
+              <button class="btn btn-primary" type="submit">ثبت سفارش دمو</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn btn-secondary" type="button" data-back="3">بازگشت به قیمت</button>
+          <span class="micro">هیچ دیتایی به سرور ارسال نمی‌شود.</span>
+        </div>
+      </section>
+
+      <!-- DONE -->
+      <section class="panel" data-panel="5">
+        <div class="done-card">
+          <div class="done-icon">✓</div>
+          <h2>کانسپت سفارش آماده شد.</h2>
+          <p>
+            در نسخه واقعی، این مرحله می‌تواند سفارش را در backend ثبت کند،
+            پرداخت را آغاز کند و مشخصات طراحی را برای کارگاه ساخت ارسال کند.
+          </p>
+          <div class="demo-warning">
+            Zarchi Astra در این prototype یک تجربه نمایشی است و به ChatGPT یا سرویس ساخت تصویر واقعی متصل نیست. برای production، prompt و generation باید از طریق backend امن به API هوش مصنوعی متصل شوند تا کلیدها در مرورگر افشا نشوند.
+          </div>
+          <div style="margin-top:24px">
+            <button class="btn btn-primary" type="button" id="restart">طراحی یک قطعه جدید</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<script>
+  // ---------- DEMO STATE ----------
+  const state = {
+    prompt: "",
+    type: "انگشتر",
+    style: "مینیمال و معاصر",
+    material: "طلای زرد ۱۸ عیار",
+    weight: 4.2,
+    detailCost: 1800000,
+    goldPrice: null,
+    total: null,
+    variation: "soft"
+  };
+
+  // BrsApi - static demo key is intentionally visible.
+  // For production this request should be proxied through a secure backend/serverless function.
+  const BRS_API_KEY = "BmzHdy9RXGB8eBLP22AyjL8VXUWPhHhB";
+  const BRS_API_URL =
+    `https://api.brsapi.ir/Market/Gold_Currency.php?key=${encodeURIComponent(BRS_API_KEY)}`;
+
+  const panels = [...document.querySelectorAll("[data-panel]")];
+  const indicators = [...document.querySelectorAll("[data-step-indicator]")];
+
+  function fa(value, maxDigits = 0) {
+    return new Intl.NumberFormat("fa-IR", {
+      maximumFractionDigits: maxDigits
+    }).format(Number(value));
+  }
+
+  function toman(value) {
+    return `${fa(Math.round(value))} تومان`;
+  }
+
+  function go(step) {
+    panels.forEach(panel => {
+      panel.classList.toggle("active", Number(panel.dataset.panel) === step);
+    });
+
+    indicators.forEach(item => {
+      const n = Number(item.dataset.stepIndicator);
+      item.classList.toggle("active", n === step);
+      item.classList.toggle("done", n < step);
+      item.querySelector(".n").textContent = n < step ? "✓" : fa(n);
+    });
+
+    window.scrollTo({ top: document.querySelector(".workspace").offsetTop - 88, behavior: "smooth" });
+  }
+
+  // ---------- PROMPT ----------
+  const promptInput = document.getElementById("promptInput");
+  const thinking = document.getElementById("thinking");
+  const generateBtn = document.getElementById("generateBtn");
+
+  document.querySelectorAll("[data-chip]").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const value = chip.dataset.chip;
+      const separator = promptInput.value.trim() ? "، " : "";
+      promptInput.value += separator + value;
+      promptInput.focus();
+    });
+  });
+
+  const samples = [
+    "یک انگشتر مینیمال برای سالگرد می‌خواهم؛ طلای زرد، فرم موج نرم، نگین ظریف مرکزی و حس مدرن.",
+    "یک گردنبند هندسی با الهام از طاق‌های معماری ایرانی؛ ظریف، طلای زرد و مناسب استفاده روزمره.",
+    "یک دستبند باریک و آینده‌نگر با خطوط پیوسته، بدون نگین، مینیمال و مناسب استایل رسمی.",
+    "یک انگشتر ارگانیک با الهام از حرکت آب؛ فرم نامتقارن نرم، طلای زرد و یک نگین کوچک."
+  ];
+
+  document.getElementById("surprisePrompt").addEventListener("click", () => {
+    promptInput.value = samples[Math.floor(Math.random() * samples.length)];
+  });
+
+  function inferFromPrompt(text) {
+    const normalized = text.trim();
+
+    if (/گردنبند|necklace/i.test(normalized)) {
+      state.type = "گردنبند";
+      state.weight = 7.8;
+    } else if (/دستبند|bracelet/i.test(normalized)) {
+      state.type = "دستبند";
+      state.weight = 6.1;
+    } else {
+      state.type = "انگشتر";
+      state.weight = 4.2;
+    }
+
+    if (/معماری|هندسی|geometric/i.test(normalized)) {
+      state.style = "هندسی، معماری‌محور و معاصر";
+    } else if (/ارگانیک|موج|آب|organic/i.test(normalized)) {
+      state.style = "ارگانیک، سیال و مینیمال";
+    } else if (/کلاسیک|classic/i.test(normalized)) {
+      state.style = "کلاسیک با اجرای مینیمال";
+    } else {
+      state.style = "مینیمال، مدرن و متعادل";
+    }
+
+    state.detailCost = /نگین|diamond|gem/i.test(normalized) ? 2800000 : 900000;
+  }
+
+  function ringSvg() {
+    const bold = state.variation === "bold";
+    const organic = state.variation === "organic";
+
+    return `
+      <svg viewBox="0 0 520 420" role="img" aria-label="کانسپت انگشتر تولیدشده توسط Astra">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#7c561f"/>
+            <stop offset=".28" stop-color="#ffe49a"/>
+            <stop offset=".58" stop-color="#c9963f"/>
+            <stop offset=".82" stop-color="#fff0b0"/>
+            <stop offset="1" stop-color="#8f6427"/>
+          </linearGradient>
+          <radialGradient id="gem" cx=".35" cy=".25">
+            <stop stop-color="#ffffff"/>
+            <stop offset=".25" stop-color="#c9f8ff"/>
+            <stop offset=".6" stop-color="#86cde3"/>
+            <stop offset="1" stop-color="#334d61"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="260" cy="340" rx="150" ry="25" fill="rgba(0,0,0,.26)"/>
+        <g transform="${organic ? "rotate(-7 260 220)" : ""}">
+          <ellipse cx="260" cy="225" rx="${bold ? 132 : 118}" ry="${bold ? 127 : 116}"
+            fill="none" stroke="url(#g)" stroke-width="${bold ? 34 : 24}"/>
+          <path d="M175 154 C215 105 310 105 348 156" fill="none" stroke="url(#g)" stroke-width="${bold ? 30 : 22}" stroke-linecap="round"/>
+          <g transform="translate(260 122)">
+            <path d="M0 -42 L40 -6 L26 42 L-26 42 L-40 -6 Z" fill="url(#gem)" stroke="#dffaff" stroke-width="3"/>
+            <path d="M0 -42 L0 42 M-40 -6 L40 -6 M-26 42 L0 -6 L26 42" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+          </g>
+        </g>
+      </svg>`;
+  }
+
+  function necklaceSvg() {
+    return `
+      <svg viewBox="0 0 520 420" role="img" aria-label="کانسپت گردنبند تولیدشده توسط Astra">
+        <defs>
+          <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#8d6427"/><stop offset=".35" stop-color="#ffe7a2"/>
+            <stop offset=".7" stop-color="#b98535"/><stop offset="1" stop-color="#f9d980"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="260" cy="365" rx="155" ry="20" fill="rgba(0,0,0,.24)"/>
+        <path d="M100 82 C120 315 400 315 420 82" fill="none" stroke="url(#ng)" stroke-width="${state.variation === "bold" ? 15 : 9}" stroke-linecap="round"/>
+        <path d="M260 278 l${state.variation === "organic" ? "-45 -45 45 -38 48 38 -48 64 z" : "-42 -28 42 -52 42 52 -42 74 z"}"
+          fill="url(#ng)" stroke="#ffe8a9" stroke-width="2"/>
+        <circle cx="260" cy="248" r="11" fill="#c9f8ff" stroke="#f6ffff" stroke-width="3"/>
+      </svg>`;
+  }
+
+  function braceletSvg() {
+    return `
+      <svg viewBox="0 0 520 420" role="img" aria-label="کانسپت دستبند تولیدشده توسط Astra">
+        <defs>
+          <linearGradient id="bgold" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#7f5822"/><stop offset=".3" stop-color="#ffe7a0"/>
+            <stop offset=".63" stop-color="#b98637"/><stop offset="1" stop-color="#f8dc8a"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="260" cy="330" rx="165" ry="23" fill="rgba(0,0,0,.25)"/>
+        <g transform="rotate(-10 260 210)">
+          <ellipse cx="260" cy="210" rx="150" ry="94" fill="none" stroke="url(#bgold)" stroke-width="${state.variation === "bold" ? 28 : 18}" stroke-linecap="round"
+            stroke-dasharray="${state.variation === "organic" ? "0" : "720 90"}"/>
+          <circle cx="405" cy="185" r="13" fill="#baf5ff" stroke="#fff" stroke-width="2"/>
+        </g>
+      </svg>`;
+  }
+
+  function renderDesign() {
+    const preview = document.getElementById("designPreview");
+
+    if (state.type === "گردنبند") preview.innerHTML = necklaceSvg();
+    else if (state.type === "دستبند") preview.innerHTML = braceletSvg();
+    else preview.innerHTML = ringSvg();
+
+    document.getElementById("aiType").textContent = state.type;
+    document.getElementById("aiStyle").textContent = state.style;
+    document.getElementById("aiMaterial").textContent = state.material;
+    document.getElementById("aiWeight").textContent = fa(state.weight, 1);
+    document.getElementById("aiInterpretation").textContent =
+      `Astra پیشنهاد می‌کند ایده شما به یک ${state.type} با زبان ${state.style} تبدیل شود؛ تناسبات برای ساخت واقعی ساده نگه داشته شده و جزئیات اصلی prompt در نقطه کانونی قطعه حفظ می‌شوند.`;
+  }
+
+  generateBtn.addEventListener("click", () => {
+    const value = promptInput.value.trim();
+
+    if (!value) {
+      promptInput.focus();
+      promptInput.placeholder = "اول ایده‌ات را برای Astra بنویس...";
+      return;
+    }
+
+    state.prompt = value;
+    inferFromPrompt(value);
+
+    thinking.classList.add("show");
+    generateBtn.disabled = true;
+
+    setTimeout(() => {
+      renderDesign();
+      thinking.classList.remove("show");
+      generateBtn.disabled = false;
+      go(2);
+    }, 1250);
+  });
+
+  document.querySelectorAll("[data-variation]").forEach(item => {
+    item.addEventListener("click", () => {
+      document.querySelectorAll("[data-variation]").forEach(x => x.classList.remove("selected"));
+      item.classList.add("selected");
+      state.variation = item.dataset.variation;
+      renderDesign();
+    });
+  });
+
+  // ---------- PRICE ----------
+  const weightRange = document.getElementById("weightRange");
+  const weightNumber = document.getElementById("weightNumber");
+
+  function setWeight(value) {
+    const v = Math.max(1.5, Math.min(15, Number(value) || 1.5));
+    state.weight = v;
+    weightRange.value = v;
+    weightNumber.value = v.toFixed(1);
+    document.getElementById("aiWeight").textContent = fa(v, 1);
+    calculatePrice();
+  }
+
+  weightRange.addEventListener("input", e => setWeight(e.target.value));
+  weightNumber.addEventListener("input", e => setWeight(e.target.value));
+
+  async function loadGoldPrice() {
+    const priceEl = document.getElementById("liveGoldPrice");
+    const stateEl = document.getElementById("marketState");
+
+    try {
+      const response = await fetch(BRS_API_URL, {
+        headers: { "Accept": "application/json" },
+        cache: "no-store"
+      });
+
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const payload = await response.json();
+      const gold18 = Array.isArray(payload.gold)
+        ? payload.gold.find(item => item.symbol === "IR_GOLD_18K")
+        : null;
+
+      if (!gold18 || !Number(gold18.price)) throw new Error("IR_GOLD_18K missing");
+
+      state.goldPrice = Number(gold18.price);
+      priceEl.textContent = `${fa(state.goldPrice)} ${gold18.unit || "تومان"} / گرم`;
+      stateEl.textContent = "● بازار زنده · متصل";
+      stateEl.style.color = "var(--green)";
+      calculatePrice();
+    } catch (error) {
+      console.error(error);
+      // Fallback is explicitly demo-only so the flow still works offline.
+      state.goldPrice = 23800000;
+      priceEl.textContent = `${fa(state.goldPrice)} تومان / گرم · مقدار جایگزین دمو`;
+      stateEl.textContent = "● API در دسترس نیست · fallback دمو";
+      stateEl.style.color = "var(--red)";
+      calculatePrice();
+    }
+  }
+
+  function calculatePrice() {
+    if (!state.goldPrice) return;
+
+    const metal = state.goldPrice * state.weight;
+
+    // Demo-only pricing rules.
+    const makingRate =
+      state.type === "گردنبند" ? 0.16 :
+      state.type === "دستبند" ? 0.14 : 0.18;
+
+    const variationFactor =
+      state.variation === "bold" ? 1.18 :
+      state.variation === "organic" ? 1.10 : 1;
+
+    const making = metal * makingRate * variationFactor;
+    const detail = state.detailCost;
+    const total = metal + making + detail;
+
+    state.total = total;
+
+    document.getElementById("metalCost").textContent = toman(metal);
+    document.getElementById("makingCost").textContent = toman(making);
+    document.getElementById("detailCost").textContent = toman(detail);
+    document.getElementById("totalPrice").textContent = toman(total);
+  }
+
+  document.getElementById("approveDesign").addEventListener("click", () => {
+    setWeight(state.weight);
+    go(3);
+    if (!state.goldPrice) loadGoldPrice();
+  });
+
+  document.getElementById("acceptPrice").addEventListener("click", () => {
+    calculatePrice();
+    go(4);
+  });
+
+  document.querySelectorAll("[data-back]").forEach(button => {
+    button.addEventListener("click", () => go(Number(button.dataset.back)));
+  });
+
+  // ---------- DELIVERY ----------
+  document.getElementById("shippingForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const name = document.getElementById("fullName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const address = document.getElementById("address").value.trim();
+
+    const id = `ZAR-ASTRA-${String(Date.now()).slice(-6)}`;
+
+    document.getElementById("summaryDesign").textContent =
+      `طراحی: ${state.type} · ${state.style} · ${fa(state.weight, 1)} گرم`;
+
+    document.getElementById("summaryPrice").textContent =
+      `قیمت نهایی دمو: ${state.total ? toman(state.total) : "—"}`;
+
+    document.getElementById("summaryAddress").textContent =
+      `تحویل به: ${name} · ${phone} · ${city} · ${address}`;
+
+    document.getElementById("summaryOrder").textContent =
+      `DEMO ORDER ID: ${id}`;
+
+    document.getElementById("orderSummary").classList.add("show");
+
+    setTimeout(() => go(5), 1100);
+  });
+
+  document.getElementById("restart").addEventListener("click", () => {
+    promptInput.value = "";
+    state.prompt = "";
+    state.type = "انگشتر";
+    state.style = "مینیمال و معاصر";
+    state.weight = 4.2;
+    state.variation = "soft";
+    document.querySelectorAll("[data-variation]").forEach((x, i) => {
+      x.classList.toggle("selected", i === 0);
+    });
+    go(1);
+  });
+
+  loadGoldPrice();
+</script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="دموی لندینگ فروشگاه طلا، جواهر، شمش و سکه پارسیان" />
+  <title>ZARCHI | گالری طلا و طراحی اختصاصی</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0d0b08;--bg-soft:#15110c;--panel:#1b160f;--panel-2:#211a12;
+      --gold:#d9b56d;--gold-2:#f2d99a;--gold-3:#9d7538;--cream:#f7f0e2;
+      --muted:#bfb5a1;--line:rgba(242,217,154,.16);--glass:rgba(255,255,255,.045);
+      --shadow:0 28px 80px rgba(0,0,0,.36);--radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--cream);background:
+      radial-gradient(circle at 85% 8%,rgba(217,181,109,.12),transparent 28%),
+      radial-gradient(circle at 12% 28%,rgba(157,117,56,.09),transparent 26%),
+      linear-gradient(180deg,#0c0a07 0%,#100d09 55%,#0b0907 100%);
+      font-family:"Vazirmatn",sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none} button{font:inherit} img{max-width:100%;display:block}
+    .noise{position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.045;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+    .container{width:min(1160px,calc(100% - 36px));margin:auto}
+    .nav-wrap{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(13,11,8,.72);border-bottom:1px solid rgba(255,255,255,.05)}
+    nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;position:relative;
+      border:1px solid rgba(242,217,154,.38);background:radial-gradient(circle at 30% 25%,#fff4c8 0 5%,transparent 7%),linear-gradient(145deg,#5d421c,#e4c16f 55%,#7d5926);box-shadow:0 0 32px rgba(217,181,109,.16)}
+    .brand-mark::after{content:"A";font-family:Georgia,serif;color:#140f08;font-weight:700;font-size:1.2rem}
+    .brand strong{display:block;letter-spacing:.16em;font-family:Georgia,serif;font-size:1.15rem}
+    .brand small{color:var(--muted);font-size:.72rem}
+    .nav-links{display:flex;align-items:center;gap:28px;color:#ddd3c1;font-size:.92rem}
+    .nav-links a{transition:.25s ease}.nav-links a:hover{color:var(--gold-2)}
+    .nav-cta{padding:11px 18px;border:1px solid rgba(242,217,154,.34);border-radius:999px;background:linear-gradient(180deg,rgba(242,217,154,.08),rgba(242,217,154,.02))}
+    .hero{min-height:760px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:78px 0 60px;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--gold-2);background:rgba(255,255,255,.025);font-size:.78rem;margin-bottom:22px}
+    .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+    .hero h1{margin:0;font-size:clamp(3rem,7vw,6.3rem);line-height:1.05;letter-spacing:-.04em;font-weight:300;max-width:680px}
+    .hero h1 .gold{color:transparent;background:linear-gradient(90deg,#aa7b36,#f5dfa1,#be913f);-webkit-background-clip:text;background-clip:text}
+    .hero p{max-width:620px;color:var(--muted);line-height:2;font-size:1rem;margin:24px 0 30px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{min-height:50px;padding:0 20px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;cursor:pointer;transition:.25s ease}
+    .btn-primary{color:#171006;background:linear-gradient(135deg,#b98a3f,#f2d99a,#c2964e);box-shadow:0 12px 30px rgba(217,181,109,.18);font-weight:700}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(217,181,109,.24)}
+    .btn-ghost{border-color:rgba(255,255,255,.1);color:#e7dece;background:rgba(255,255,255,.025)}
+    .btn-ghost:hover{border-color:rgba(242,217,154,.28);background:rgba(242,217,154,.05)}
+    .hero-meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:18px 28px;color:#a99f8c;font-size:.8rem}
+    .hero-meta span{display:flex;align-items:center;gap:8px}.hero-meta i{width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.85}
+    .hero-visual{position:relative;min-height:590px;display:grid;place-items:center}
+    .orb{width:min(470px,92%);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 40% 35%,rgba(255,240,186,.22),transparent 15%),radial-gradient(circle at 50% 50%,rgba(217,181,109,.12),transparent 48%),linear-gradient(145deg,#17120c,#0e0b08 62%);border:1px solid rgba(242,217,154,.18);box-shadow:inset 0 0 90px rgba(217,181,109,.06),0 40px 120px rgba(0,0,0,.45);animation:float 7s ease-in-out infinite}
+    .orb::before,.orb::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(242,217,154,.16);inset:9%;animation:spin 18s linear infinite}
+    .orb::after{inset:19%;border-style:dashed;animation-duration:24s;animation-direction:reverse}
+    .ring{position:absolute;width:210px;height:210px;border-radius:50%;border:24px solid transparent;background:linear-gradient(#111,#111) padding-box,linear-gradient(135deg,#6f4d1d,#f5dda0 45%,#926727 70%,#f7e7b2) border-box;transform:rotate(-18deg);top:50%;left:50%;translate:-50% -50%;box-shadow:inset 0 0 24px rgba(255,235,175,.22),0 12px 40px rgba(0,0,0,.42)}
+    .gem{position:absolute;width:72px;height:72px;left:50%;top:18%;translate:-50% 0;transform:rotate(45deg);background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(242,217,154,.45) 45%,rgba(167,116,46,.8));clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%);filter:drop-shadow(0 0 22px rgba(242,217,154,.35));animation:gemGlow 3s ease-in-out infinite}
+    .float-card{position:absolute;padding:14px 16px;min-width:170px;border-radius:18px;border:1px solid rgba(255,255,255,.07);background:rgba(28,22,15,.74);backdrop-filter:blur(14px);box-shadow:var(--shadow);animation:float 6s ease-in-out infinite}
+    .float-card strong{display:block;font-size:.95rem;margin-bottom:4px}.float-card span{color:var(--muted);font-size:.75rem}.fc-1{right:-10px;top:14%}.fc-2{left:-20px;bottom:13%;animation-delay:-2s}
+    .ticker{margin:0 auto 12px;border-block:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.018)}
+    .ticker-track{display:flex;gap:50px;width:max-content;padding:13px 0;color:#c8bea9;font-size:.78rem;animation:ticker 22s linear infinite}
+    .ticker-track span{white-space:nowrap}.ticker b{color:var(--gold-2);font-weight:600}
+    section{padding:92px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px}
+    .section-head h2{margin:0;font-size:clamp(2rem,4vw,3.4rem);font-weight:400;line-height:1.2}
+    .section-head p{max-width:520px;margin:0;color:var(--muted);line-height:1.9;font-size:.92rem}
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .product{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border-radius:24px;min-height:470px;transition:.3s ease}
+    .product:hover{transform:translateY(-6px);border-color:rgba(242,217,154,.22);box-shadow:0 24px 60px rgba(0,0,0,.24)}
+    .product-visual{height:310px;display:grid;place-items:center;position:relative;background:radial-gradient(circle at 50% 45%,rgba(217,181,109,.16),transparent 38%),linear-gradient(180deg,#1c1711,#15110d)}
+    .product-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.06) 46%,transparent 57%);transform:translateX(-120%);transition:transform .8s ease}
+    .product:hover .product-visual::after{transform:translateX(120%)}
+    .product-body{padding:20px}.product-kicker{color:var(--gold);font-size:.74rem;margin-bottom:6px}.product h3{margin:0 0 10px;font-size:1.18rem;font-weight:600}.product p{margin:0;color:var(--muted);font-size:.83rem;line-height:1.8}
+    .product-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-size:.82rem}.sample{color:#8d8371}.price{color:var(--gold-2)}
+    .coin{width:150px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;color:#3a2a13;font-weight:800;background:radial-gradient(circle at 35% 25%,#fff0a8 0 8%,transparent 10%),repeating-radial-gradient(circle at 50% 50%,transparent 0 12px,rgba(120,82,25,.08) 13px 14px),linear-gradient(135deg,#9c6d27,#f2d377 45%,#ad7a2f 72%,#efd58b);border:7px double #7d541c;box-shadow:0 24px 55px rgba(0,0,0,.42),inset 0 0 22px rgba(255,247,199,.32);transform:rotate(-8deg)}
+    .coin span{display:block;text-align:center;font-size:.9rem;line-height:1.3}
+    .bar{width:210px;height:120px;border-radius:16px;transform:perspective(700px) rotateX(18deg) rotateZ(-10deg);background:linear-gradient(135deg,#7b5520,#f2d47d 35%,#c18c35 65%,#f7e7ad);box-shadow:0 32px 70px rgba(0,0,0,.45),inset 0 0 28px rgba(255,255,255,.12);border:1px solid rgba(255,241,180,.65);display:grid;place-items:center;color:#4a3313;text-align:center;font-weight:800;letter-spacing:.06em}
+    .necklace{width:180px;height:180px;border-radius:50%;border:8px solid #c79b4b;border-top-color:transparent;position:relative;filter:drop-shadow(0 16px 25px rgba(0,0,0,.38));transform:rotate(4deg)}
+    .necklace::before{content:"";position:absolute;width:34px;height:48px;left:50%;bottom:-26px;translate:-50% 0;background:linear-gradient(135deg,#fff2b1,#b98535 60%,#f5d97f);clip-path:polygon(50% 0,100% 30%,78% 100%,22% 100%,0 30%);box-shadow:0 0 20px rgba(242,217,154,.28)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+    .atelier,.assurance{border:1px solid rgba(255,255,255,.07);border-radius:30px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));min-height:460px}
+    .atelier{padding:44px;position:relative}.atelier::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;left:-100px;bottom:-100px;border:1px solid rgba(242,217,154,.16);box-shadow:0 0 0 34px rgba(242,217,154,.025),0 0 0 68px rgba(242,217,154,.018)}
+    .atelier h3{margin:0 0 14px;font-size:2rem;font-weight:400}.atelier p{color:var(--muted);line-height:2;max-width:520px}.atelier-steps{margin-top:34px;display:grid;gap:14px}
+    .step{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}.step-num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#21170b;background:var(--gold);flex:0 0 auto;font-size:.76rem;font-weight:800}.step b{display:block;margin-bottom:4px}.step span{color:var(--muted);font-size:.78rem}
+    .assurance{padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:center}.assurance-card{min-height:160px;border-radius:22px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.025);padding:20px;transition:.25s ease}.assurance-card:hover{transform:translateY(-4px);border-color:rgba(242,217,154,.2)}
+    .assurance-card .icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#281d0d;background:linear-gradient(135deg,#a87a32,#ecd28a);margin-bottom:18px}.assurance-card strong{display:block;margin-bottom:8px}.assurance-card p{margin:0;color:var(--muted);font-size:.78rem;line-height:1.8}
+    .cta{position:relative;overflow:hidden;padding:56px;border-radius:32px;border:1px solid rgba(242,217,154,.17);background:radial-gradient(circle at 80% 20%,rgba(242,217,154,.15),transparent 28%),linear-gradient(135deg,#1d1710,#120f0b)}
+    .cta::after{content:"";position:absolute;inset:auto -90px -110px auto;width:280px;height:280px;border-radius:50%;border:1px solid rgba(242,217,154,.13);box-shadow:0 0 0 36px rgba(242,217,154,.018),0 0 0 72px rgba(242,217,154,.012)}
+    .cta h2{margin:0 0 12px;font-size:clamp(2rem,4vw,3.6rem);font-weight:400}.cta p{color:var(--muted);max-width:650px;line-height:1.9;margin-bottom:24px}
+
+    .live-market{padding:42px 0 18px}
+    .market-panel{position:relative;overflow:hidden;border:1px solid rgba(242,217,154,.16);border-radius:30px;background:radial-gradient(circle at 90% 15%,rgba(242,217,154,.10),transparent 26%),linear-gradient(180deg,rgba(255,255,255,.038),rgba(255,255,255,.015));box-shadow:0 24px 70px rgba(0,0,0,.20);padding:28px}
+    .market-panel::after{content:"";position:absolute;width:260px;height:260px;left:-120px;bottom:-150px;border-radius:50%;border:1px solid rgba(242,217,154,.10);box-shadow:0 0 0 34px rgba(242,217,154,.014),0 0 0 68px rgba(242,217,154,.01);pointer-events:none}
+    .market-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:22px}
+    .market-title{display:flex;align-items:center;gap:12px}
+    .live-dot{width:10px;height:10px;border-radius:50%;background:#6fe0a4;box-shadow:0 0 0 7px rgba(111,224,164,.08),0 0 20px rgba(111,224,164,.45);animation:livePulse 1.8s ease-in-out infinite}
+    .market-title h2{margin:0;font-size:1.25rem;font-weight:600}
+    .market-title p{margin:4px 0 0;color:var(--muted);font-size:.76rem}
+    .market-refresh{min-height:40px;padding:0 14px;border-radius:12px;border:1px solid rgba(242,217,154,.18);color:#e8ddc9;background:rgba(255,255,255,.025);cursor:pointer;transition:.22s ease}
+    .market-refresh:hover{border-color:rgba(242,217,154,.36);background:rgba(242,217,154,.06)}
+    .market-refresh:disabled{opacity:.55;cursor:wait}
+    .market-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:14px}
+    .market-card{min-height:132px;padding:20px;border-radius:22px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.025)}
+    .market-card.primary{background:linear-gradient(135deg,rgba(217,181,109,.10),rgba(255,255,255,.018));border-color:rgba(242,217,154,.14)}
+    .market-label{color:#a99f8c;font-size:.76rem;margin-bottom:10px}
+    .market-value{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;color:var(--gold-2);font-size:clamp(1.55rem,3vw,2.25rem);font-weight:700;direction:rtl}
+    .market-value small{color:#aa9e88;font-size:.72rem;font-weight:400}
+    .market-change{margin-top:8px;font-size:.78rem;color:#aaa08e}
+    .market-change.up{color:#76d8a4}.market-change.down{color:#e78383}
+    .market-secondary-value{font-size:1.12rem;font-weight:600;color:#e9deca;margin-top:11px}
+    .market-status{margin-top:15px;min-height:24px;color:#8f8574;font-size:.75rem}
+    .market-status.error{color:#d79595}
+    .market-skeleton{display:inline-block;width:150px;height:28px;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(255,255,255,.10),rgba(255,255,255,.04));background-size:200% 100%;animation:skeleton 1.4s linear infinite}
+    @keyframes livePulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.82);opacity:.65}}
+    @keyframes skeleton{to{background-position:-200% 0}}
+
+    footer{padding:50px 0 34px;color:#918775}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:22px;border-top:1px solid rgba(255,255,255,.06);padding-top:28px;font-size:.78rem}
+    .reveal{opacity:0;transform:translateY(22px);transition:.7s ease}.reveal.visible{opacity:1;transform:none}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes gemGlow{0%,100%{filter:drop-shadow(0 0 18px rgba(242,217,154,.24))}50%{filter:drop-shadow(0 0 34px rgba(242,217,154,.55))}}
+    @keyframes ticker{to{transform:translateX(50%)}}
+    @media (max-width:900px){.nav-links{display:none}.hero{grid-template-columns:1fr;padding-top:48px}.hero-visual{min-height:500px}.products{grid-template-columns:1fr}.split{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.market-grid{grid-template-columns:1fr 1fr}.market-card.primary{grid-column:1/-1}}
+    @media (max-width:620px){.container{width:min(100% - 22px,1160px)}.market-panel{padding:20px}.market-head{align-items:flex-start;flex-direction:column}.market-grid{grid-template-columns:1fr}.market-card.primary{grid-column:auto}nav{min-height:68px}.brand small{display:none}.hero{min-height:auto;gap:28px;padding:42px 0 34px}.hero h1{font-size:clamp(2.7rem,14vw,4.5rem)}.hero p{font-size:.92rem}.hero-visual{min-height:390px}.orb{width:310px}.ring{width:145px;height:145px;border-width:17px}.gem{width:52px;height:52px}.fc-1{right:0;top:5%}.fc-2{left:0;bottom:6%}.float-card{min-width:140px;padding:11px 13px}section{padding:66px 0}.atelier,.assurance{padding:24px}.assurance{grid-template-columns:1fr}.cta{padding:34px 24px}.footer-row{flex-direction:column;align-items:flex-start}.product{min-height:430px}.product-visual{height:275px}}
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="noise"></div>
+
+<div class="nav-wrap">
+  <div class="container">
+    <nav>
+      <a class="brand" href="#">
+        <span class="brand-mark"></span>
+        <span><strong>ZARCHI</strong><small>Gold & Fine Jewelry</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#collections">کالکشن‌ها</a>
+        <a href="#bullion">شمش و پارسیان</a>
+        <a href="#atelier">طراحی اختصاصی</a>
+        <a href="astra.html">طراحی با Astra ✦</a>
+        <a href="#about">درباره ما</a>
+      </div>
+      <a class="nav-cta" href="#collections">مشاهده محصولات</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">طلا برای ماندن، طراحی برای به‌یادماندن</div>
+        <h1>طلایی که <span class="gold">شخصیت</span> شما را دارد.</h1>
+        <p>مجموعه‌ای از جواهرات طراحی‌شده، قطعات مینیمال روزمره، شمش‌های طلا و سکه‌های پارسیان؛ برای هدیه، سرمایه‌گذاری و لحظه‌هایی که قرار است ماندگار شوند.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#collections">کشف کالکشن‌ها</a>
+          <a class="btn btn-ghost" href="#atelier">سفارش طراحی اختصاصی</a>
+          <a class="btn btn-ghost" href="astra.html">طراحی با Astra ✦</a>
+        </div>
+        <div class="hero-meta">
+          <span><i></i> فاکتور رسمی</span>
+          <span><i></i> تضمین اصالت</span>
+          <span><i></i> بسته‌بندی هدیه</span>
+          <span><i></i> ارسال امن</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb"><div class="ring"></div><div class="gem"></div></div>
+        <div class="float-card fc-1"><strong>طراحی اختصاصی</strong><span>از ایده تا قطعه نهایی</span></div>
+        <div class="float-card fc-2"><strong>طلای ۱۸ عیار</strong><span>ساخت محدود و انتخاب‌شده</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="ticker" aria-label="نمونه قیمت‌ها">
+    <div class="ticker-track">
+      <span>طلای ۱۸ عیار <b class="live-gold-ticker">در حال دریافت...</b></span><span>سکه پارسیان ۰.۵ گرم <b>قیمت نمونه</b></span><span>شمش ۱ گرم <b>قیمت نمونه</b></span>
+      <span>طلای ۱۸ عیار <b class="live-gold-ticker">در حال دریافت...</b></span><span>سکه پارسیان ۰.۵ گرم <b>قیمت نمونه</b></span><span>شمش ۱ گرم <b>قیمت نمونه</b></span>
+    </div>
+  </div>
+
+
+  <section class="live-market" id="live-market">
+    <div class="container">
+      <div class="market-panel reveal">
+        <div class="market-head">
+          <div class="market-title">
+            <span class="live-dot" aria-hidden="true"></span>
+            <div>
+              <h2>قیمت لحظه‌ای بازار طلا</h2>
+              <p>داده زنده از BrsApi — قیمت پس از باز شدن صفحه دریافت می‌شود.</p>
+            </div>
+          </div>
+          <button class="market-refresh" id="refreshMarket" type="button">بروزرسانی قیمت</button>
+        </div>
+
+        <div class="market-grid">
+          <div class="market-card primary">
+            <div class="market-label">طلای ۱۸ عیار / هر گرم</div>
+            <div class="market-value">
+              <span id="gold18Price" class="market-skeleton" aria-label="در حال دریافت قیمت"></span>
+              <small id="gold18Unit"></small>
+            </div>
+            <div class="market-change" id="gold18Change">در حال دریافت داده...</div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-label">تغییر امروز</div>
+            <div class="market-secondary-value" id="gold18DailyChange">—</div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-label">آخرین بروزرسانی بازار</div>
+            <div class="market-secondary-value" id="gold18UpdatedAt">—</div>
+          </div>
+        </div>
+
+        <div class="market-status" id="marketStatus" role="status" aria-live="polite">
+          در حال اتصال به سرویس قیمت...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collections">
+    <div class="container">
+      <div class="section-head reveal">
+        <div><div class="eyebrow">Selected Pieces</div><h2>سه مسیر برای انتخاب طلا</h2></div>
+        <p>برای استایل شخصی، هدیه یا سرمایه‌گذاری. این کارت‌ها صرفاً دموی رابط کاربری هستند و قیمت‌های نمایش‌داده‌شده واقعی نیستند.</p>
+      </div>
+
+      <div class="products">
+        <article class="product reveal">
+          <div class="product-visual"><div class="necklace"></div></div>
+          <div class="product-body">
+            <div class="product-kicker">SIGNATURE JEWELRY</div><h3>گردنبند Zarchi No.01</h3>
+            <p>فرم مینیمال، پرداخت براق و طراحی مناسب استفاده روزمره و رسمی.</p>
+            <div class="product-foot"><span class="sample">دمو</span><span class="price">قیمت نمونه</span></div>
+          </div>
+        </article>
+
+        <article class="product reveal" id="bullion">
+          <div class="product-visual"><div class="coin"><span>PARSIAN<br>GOLD</span></div></div>
+          <div class="product-body">
+            <div class="product-kicker">GIFT & INVESTMENT</div><h3>سکه پارسیان</h3>
+            <p>انتخابی مناسب برای هدیه و خرید طلا در وزن‌های متنوع و قابل انتخاب.</p>
+            <div class="product-foot"><span class="sample">۰.۱ تا ۲ گرم</span><span class="price">قیمت نمونه</span></div>
+          </div>
+        </article>
+
+        <article class="product reveal">
+          <div class="product-visual"><div class="bar">ZARCHI<br>24K GOLD<br>1 g</div></div>
+          <div class="product-body">
+            <div class="product-kicker">PURE GOLD</div><h3>شمش طلای ۲۴ عیار</h3>
+            <p>بسته‌بندی مینیمال، مناسب نگهداری، هدیه و سرمایه‌گذاری بلندمدت.</p>
+            <div class="product-foot"><span class="sample">۱ گرم</span><span class="price">قیمت نمونه</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="astra-feature" style="padding-top:30px;padding-bottom:35px">
+    <div class="container">
+      <div class="cta reveal" style="background:
+        radial-gradient(circle at 82% 22%,rgba(119,227,255,.12),transparent 26%),
+        radial-gradient(circle at 20% 80%,rgba(169,140,255,.08),transparent 30%),
+        linear-gradient(135deg,#11191e,#120f0b);border-color:rgba(119,227,255,.14)">
+        <div class="eyebrow" style="color:#bff5ff;border-color:rgba(119,227,255,.18)">ZARCHI ASTRA · AI DESIGN STUDIO</div>
+        <h2>طلایی که هنوز وجود ندارد را طراحی کن.</h2>
+        <p>
+          ایده‌ات را با یک prompt توضیح بده؛ Astra در تجربه دموی جدید Zarchi
+          کانسپت طراحی، وزن پیشنهادی، برآورد قیمت و مسیر ثبت سفارش را مرحله‌به‌مرحله نمایش می‌دهد.
+        </p>
+        <a class="btn btn-primary" href="astra.html">ورود به Astra ✦</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="atelier">
+    <div class="container split">
+      <div class="atelier reveal">
+        <div class="eyebrow">Private Atelier</div><h3>طلای شما، با امضای خودتان.</h3>
+        <p>اگر ایده‌ای دارید، از یک طرح ساده تا قطعه‌ای کاملاً شخصی، فرایند طراحی را کنار شما پیش می‌بریم.</p>
+        <div class="atelier-steps">
+          <div class="step"><div class="step-num">۱</div><div><b>ایده و مشاوره</b><span>انتخاب سبک، بودجه، وزن و کاربرد قطعه</span></div></div>
+          <div class="step"><div class="step-num">۲</div><div><b>طراحی و تایید</b><span>پیش‌نمایش طرح و اصلاح جزئیات قبل از ساخت</span></div></div>
+          <div class="step"><div class="step-num">۳</div><div><b>ساخت و تحویل</b><span>پرداخت نهایی، کنترل کیفیت و بسته‌بندی اختصاصی</span></div></div>
+        </div>
+      </div>
+
+      <div class="assurance reveal" id="about">
+        <div class="assurance-card"><div class="icon">✓</div><strong>اصالت قابل اعتماد</strong><p>اطلاعات وزن، عیار و مشخصات هر قطعه شفاف نمایش داده می‌شود.</p></div>
+        <div class="assurance-card"><div class="icon">◆</div><strong>طراحی محدود</strong><p>تمرکز بر قطعاتی با هویت مشخص، نه صرفاً موجودی تکراری بازار.</p></div>
+        <div class="assurance-card"><div class="icon">◎</div><strong>مناسب هدیه</strong><p>بسته‌بندی پریمیوم و امکان افزودن پیام شخصی برای مناسبت‌ها.</p></div>
+        <div class="assurance-card"><div class="icon">↗</div><strong>ارسال امن</strong><p>فرآیند بسته‌بندی و تحویل با تمرکز بر امنیت و رهگیری سفارش.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta reveal">
+        <div class="eyebrow">ZARCHI PRIVATE EDITION</div>
+        <h2>یک قطعه، فقط برای شما.</h2>
+        <p>برای طراحی حلقه، پلاک، دستبند یا هدیه‌ای خاص، درخواست خود را ثبت کنید تا فرایند طراحی اختصاصی آغاز شود.</p>
+        <a class="btn btn-primary" href="mailto:hello@example.com">شروع سفارش اختصاصی</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <span>© 2026 ZARCHI — Demo Gold & Jewelry Landing Page</span>
+      <span>این پروژه یک دموی رابط کاربری است و فروشگاه واقعی نیست.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /*
+   * BrsApi Free Gold/Currency API
+   *
+   * IMPORTANT:
+   * This project is fully static, so this API key is visible in the page
+   * source and DevTools. For a production website, put this request behind
+   * a serverless proxy (for example Cloudflare Workers) and store the key
+   * as a secret there.
+   */
+  const BRS_API_KEY = "BmzHdy9RXGB8eBLP22AyjL8VXUWPhHhB";
+
+  const BRS_API_URL =
+    `https://api.brsapi.ir/Market/Gold_Currency.php?key=${encodeURIComponent(BRS_API_KEY)}`;
+
+  const marketEls = {
+    price: document.getElementById("gold18Price"),
+    unit: document.getElementById("gold18Unit"),
+    change: document.getElementById("gold18Change"),
+    dailyChange: document.getElementById("gold18DailyChange"),
+    updatedAt: document.getElementById("gold18UpdatedAt"),
+    status: document.getElementById("marketStatus"),
+    refresh: document.getElementById("refreshMarket"),
+    ticker: document.querySelectorAll(".live-gold-ticker")
+  };
+
+  function faNumber(value, options = {}) {
+    if (value === null || value === undefined || Number.isNaN(Number(value))) {
+      return "—";
+    }
+
+    return new Intl.NumberFormat("fa-IR", options).format(Number(value));
+  }
+
+  function renderGold18(gold18) {
+    const {
+      price,
+      change_value: changeValue,
+      change_percent: changePercent,
+      unit,
+      date,
+      time
+    } = gold18;
+
+    marketEls.price.classList.remove("market-skeleton");
+    marketEls.price.textContent = faNumber(price);
+    marketEls.unit.textContent = unit || "تومان";
+
+    marketEls.change.classList.remove("up", "down");
+
+    const percentSign = Number(changePercent) > 0 ? "+" : "";
+    marketEls.change.textContent =
+      `${percentSign}${faNumber(changePercent, { maximumFractionDigits: 2 })}٪`;
+
+    if (Number(changePercent) > 0) {
+      marketEls.change.classList.add("up");
+    } else if (Number(changePercent) < 0) {
+      marketEls.change.classList.add("down");
+    }
+
+    const valueSign = Number(changeValue) > 0 ? "+" : "";
+    marketEls.dailyChange.textContent =
+      `${valueSign}${faNumber(changeValue)} ${unit || "تومان"}`;
+
+    const faDate = date
+      ? String(date).replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])
+      : "—";
+
+    const faTime = time
+      ? String(time).replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])
+      : "—";
+
+    marketEls.updatedAt.textContent =
+      `${faDate} · ${faTime}`;
+
+    const tickerText =
+      `${faNumber(price)} ${unit || "تومان"} (${percentSign}${faNumber(changePercent, {
+        maximumFractionDigits: 2
+      })}٪)`;
+
+    marketEls.ticker.forEach(el => {
+      el.textContent = tickerText;
+    });
+
+    const receivedAt = new Intl.DateTimeFormat("fa-IR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    }).format(new Date());
+
+    marketEls.status.classList.remove("error");
+    marketEls.status.textContent =
+      `طلای ۱۸ عیار · آخرین داده بازار ${faDate} ${faTime} · دریافت در ${receivedAt}`;
+  }
+
+  async function loadMarketData() {
+    marketEls.refresh.disabled = true;
+    marketEls.status.classList.remove("error");
+    marketEls.status.textContent = "در حال دریافت قیمت واقعی از BrsApi...";
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+
+    try {
+      const response = await fetch(BRS_API_URL, {
+        method: "GET",
+        headers: {
+          "Accept": "application/json"
+        },
+        cache: "no-store",
+        signal: controller.signal
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const payload = await response.json();
+
+      if (!Array.isArray(payload.gold)) {
+        throw new Error("The API response does not contain a gold array.");
+      }
+
+      const gold18 = payload.gold.find(
+        item => item.symbol === "IR_GOLD_18K"
+      );
+
+      if (!gold18) {
+        console.log("BrsApi response:", payload);
+        throw new Error("IR_GOLD_18K was not found in the API response.");
+      }
+
+      renderGold18(gold18);
+    } catch (error) {
+      console.error("BrsApi request failed:", error);
+
+      marketEls.price.classList.remove("market-skeleton");
+      marketEls.price.textContent = "—";
+      marketEls.unit.textContent = "";
+      marketEls.change.textContent = "داده در دسترس نیست";
+      marketEls.dailyChange.textContent = "—";
+      marketEls.updatedAt.textContent = "—";
+
+      marketEls.status.classList.add("error");
+
+      marketEls.status.textContent =
+        error.name === "AbortError"
+          ? "زمان پاسخ‌گویی سرویس بیش از حد طول کشید. دوباره تلاش کنید."
+          : "دریافت قیمت ناموفق بود. اتصال اینترنت، محدودیت CORS یا وضعیت سرویس را بررسی کنید.";
+
+      marketEls.ticker.forEach(el => {
+        el.textContent = "داده در دسترس نیست";
+      });
+    } finally {
+      clearTimeout(timeout);
+      marketEls.refresh.disabled = false;
+    }
+  }
+
+  marketEls.refresh.addEventListener("click", loadMarketData);
+
+  // Fetch once when the page is opened.
+  loadMarketData();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
