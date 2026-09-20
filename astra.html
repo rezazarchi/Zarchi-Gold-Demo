@@ -858,7 +858,7 @@
             <h2>چه طلایی در ذهن داری؟</h2>
             <p>هرچقدر جزئیات بیشتری بدهی، Astra کانسپت دقیق‌تری برای دمو می‌سازد.</p>
           </div>
-          <span class="badge">STEP 01 · PROMPT</span>
+          <span class="badge">مرحله ۰۱ · ایده</span>
         </div>
 
         <div class="panel-body">
@@ -898,7 +898,7 @@
             <h2>کانسپت پیشنهادی Astra</h2>
             <p>یک برداشت بصری و مشخصات پیشنهادی بر اساس prompt شما.</p>
           </div>
-          <span class="badge">STEP 02 · DESIGN</span>
+          <span class="badge">مرحله ۰۲ · طراحی</span>
         </div>
 
         <div class="panel-body">
@@ -929,16 +929,7 @@
               <div class="analysis-card">
                 <label>وزن اولیه تخمینی</label>
                 <strong><span id="aiWeight">—</span> گرم</strong>
-              </div>
-              <div class="analysis-card">
-                <label>Variation</label>
-                <div class="variation-row">
-                  <div class="variation selected" data-variation="soft">Soft</div>
-                  <div class="variation" data-variation="bold">Bold</div>
-                  <div class="variation" data-variation="organic">Organic</div>
-                </div>
-              </div>
-            </div>
+              </div>            </div>
           </div>
         </div>
 
@@ -955,7 +946,7 @@
             <h2>برآورد و قیمت نهایی دمو</h2>
             <p>قیمت طلا از بازار زنده دریافت می‌شود و هزینه ساخت طبق پارامترهای دموی Zarchi محاسبه می‌شود.</p>
           </div>
-          <span class="badge">STEP 03 · PRICE</span>
+          <span class="badge">مرحله ۰۳ · قیمت</span>
         </div>
 
         <div class="panel-body">
@@ -1001,7 +992,7 @@
               <div class="price-line"><span>بسته‌بندی و آماده‌سازی</span><b id="packagingCost">رایگان</b></div>
             </div>
             <div class="total">
-              <span>قیمت نهایی این کانفیگ</span>
+              <span>قیمت نهایی این سفارش</span>
               <strong id="totalPrice">—</strong>
             </div>
           </div>
@@ -1024,7 +1015,7 @@
             <h2>مشخصات مشتری و ارسال</h2>
             <p>آخرین مرحله دمو؛ اطلاعات فقط در همین صفحه استفاده می‌شود و جایی ارسال یا ذخیره نمی‌شود.</p>
           </div>
-          <span class="badge">STEP 04 · DELIVERY</span>
+          <span class="badge">مرحله ۰۴ · تحویل</span>
         </div>
 
         <div class="panel-body">
@@ -1299,16 +1290,6 @@
       go(2);
     }, 1250);
   });
-
-  document.querySelectorAll("[data-variation]").forEach(item => {
-    item.addEventListener("click", () => {
-      document.querySelectorAll("[data-variation]").forEach(x => x.classList.remove("selected"));
-      item.classList.add("selected");
-      state.variation = item.dataset.variation;
-      renderDesign();
-    });
-  });
-
   // ---------- PRICE ----------
   const weightRange = document.getElementById("weightRange");
   const weightNumber = document.getElementById("weightNumber");
@@ -1369,11 +1350,6 @@
     const makingRate =
       state.type === "گردنبند" ? 0.16 :
       state.type === "دستبند" ? 0.14 : 0.18;
-
-    const variationFactor =
-      state.variation === "bold" ? 1.18 :
-      state.variation === "organic" ? 1.10 : 1;
-
     const making = metal * makingRate;
     const detail = state.detailCost;
     const total = metal + making + detail;
@@ -1434,11 +1410,7 @@
     state.prompt = "";
     state.type = "انگشتر";
     state.style = "مینیمال و معاصر";
-    state.weight = 4.2;
-    document.querySelectorAll("[data-variation]").forEach((x, i) => {
-      x.classList.toggle("selected", i === 0);
-    });
-    go(1);
+    state.weight = 4.2;    go(1);
   });
 
   loadGoldPrice();
