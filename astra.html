@@ -569,32 +569,7 @@
       border-color:rgba(119,227,255,.13);
       background:linear-gradient(100deg,rgba(119,227,255,.05),rgba(169,140,255,.03));
     }
-
-    .variation-row{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:9px;
-      margin-top:4px;
-    }
-
-    .variation{
-      padding:11px;
-      border-radius:13px;
-      border:1px solid rgba(255,255,255,.06);
-      text-align:center;
-      color:#8c9aa1;
-      background:rgba(255,255,255,.02);
-      font-size:.68rem;
-      cursor:pointer;
-    }
-
-    .variation.selected{
-      color:#dffaff;
-      border-color:rgba(119,227,255,.24);
-      background:rgba(119,227,255,.06);
-    }
-
-    .panel-actions{
+.panel-actions{
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -1132,8 +1107,7 @@
     weight: 4.2,
     detailCost: 1800000,
     goldPrice: null,
-    total: null,
-    variation: "soft"
+    total: null
   };
 
   // BrsApi - static demo key is intentionally visible.
@@ -1223,9 +1197,6 @@
   }
 
   function ringSvg() {
-    const bold = state.variation === "bold";
-    const organic = state.variation === "organic";
-
     return `
       <svg viewBox="0 0 520 420" role="img" aria-label="کانسپت انگشتر تولیدشده توسط Astra">
         <defs>
@@ -1244,10 +1215,10 @@
           </radialGradient>
         </defs>
         <ellipse cx="260" cy="340" rx="150" ry="25" fill="rgba(0,0,0,.26)"/>
-        <g transform="${organic ? "rotate(-7 260 220)" : ""}">
-          <ellipse cx="260" cy="225" rx="${bold ? 132 : 118}" ry="${bold ? 127 : 116}"
-            fill="none" stroke="url(#g)" stroke-width="${bold ? 34 : 24}"/>
-          <path d="M175 154 C215 105 310 105 348 156" fill="none" stroke="url(#g)" stroke-width="${bold ? 30 : 22}" stroke-linecap="round"/>
+        <g transform="">
+          <ellipse cx="260" cy="225" rx="118" ry="116"
+            fill="none" stroke="url(#g)" stroke-width="24"/>
+          <path d="M175 154 C215 105 310 105 348 156" fill="none" stroke="url(#g)" stroke-width="22" stroke-linecap="round"/>
           <g transform="translate(260 122)">
             <path d="M0 -42 L40 -6 L26 42 L-26 42 L-40 -6 Z" fill="url(#gem)" stroke="#dffaff" stroke-width="3"/>
             <path d="M0 -42 L0 42 M-40 -6 L40 -6 M-26 42 L0 -6 L26 42" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
@@ -1266,8 +1237,8 @@
           </linearGradient>
         </defs>
         <ellipse cx="260" cy="365" rx="155" ry="20" fill="rgba(0,0,0,.24)"/>
-        <path d="M100 82 C120 315 400 315 420 82" fill="none" stroke="url(#ng)" stroke-width="${state.variation === "bold" ? 15 : 9}" stroke-linecap="round"/>
-        <path d="M260 278 l${state.variation === "organic" ? "-45 -45 45 -38 48 38 -48 64 z" : "-42 -28 42 -52 42 52 -42 74 z"}"
+        <path d="M100 82 C120 315 400 315 420 82" fill="none" stroke="url(#ng)" stroke-width="9" stroke-linecap="round"/>
+        <path d="M260 278 l-42 -28 42 -52 42 52 -42 74 z"
           fill="url(#ng)" stroke="#ffe8a9" stroke-width="2"/>
         <circle cx="260" cy="248" r="11" fill="#c9f8ff" stroke="#f6ffff" stroke-width="3"/>
       </svg>`;
@@ -1284,8 +1255,8 @@
         </defs>
         <ellipse cx="260" cy="330" rx="165" ry="23" fill="rgba(0,0,0,.25)"/>
         <g transform="rotate(-10 260 210)">
-          <ellipse cx="260" cy="210" rx="150" ry="94" fill="none" stroke="url(#bgold)" stroke-width="${state.variation === "bold" ? 28 : 18}" stroke-linecap="round"
-            stroke-dasharray="${state.variation === "organic" ? "0" : "720 90"}"/>
+          <ellipse cx="260" cy="210" rx="150" ry="94" fill="none" stroke="url(#bgold)" stroke-width="18" stroke-linecap="round"
+            stroke-dasharray="720 90"/>
           <circle cx="405" cy="185" r="13" fill="#baf5ff" stroke="#fff" stroke-width="2"/>
         </g>
       </svg>`;
@@ -1403,7 +1374,7 @@
       state.variation === "bold" ? 1.18 :
       state.variation === "organic" ? 1.10 : 1;
 
-    const making = metal * makingRate * variationFactor;
+    const making = metal * makingRate;
     const detail = state.detailCost;
     const total = metal + making + detail;
 
@@ -1464,7 +1435,6 @@
     state.type = "انگشتر";
     state.style = "مینیمال و معاصر";
     state.weight = 4.2;
-    state.variation = "soft";
     document.querySelectorAll("[data-variation]").forEach((x, i) => {
       x.classList.toggle("selected", i === 0);
     });
