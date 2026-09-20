@@ -959,16 +959,17 @@
             </div>
 
             <div class="field">
-              <label for="finishSelect">پرداخت سطح</label>
-              <select id="finishSelect">
-                <option value="polished">براق آینه‌ای</option>
-                <option value="matte">مات ابریشمی</option>
-                <option value="hammered">چکشی ظریف</option>
+              <label for="platingSelect">نوع آبکاری</label>
+              <select id="platingSelect">
+                <option value="none">بدون آبکاری · پرداخت براق</option>
+                <option value="gold">آبکاری طلایی</option>
+                <option value="white">آبکاری سفید</option>
+                <option value="rosegold">آبکاری رزگلد</option>
               </select>
             </div>
 
             <div class="field" style="grid-column:1/-1">
-              <label for="weightRange">وزن نهایی برای این دمو</label>
+              <label for="weightRange">وزن نهایی برای این سفارش</label>
               <div class="range-row">
                 <input id="weightRange" type="range" min="1.5" max="15" step="0.1" value="4.2">
                 <input id="weightNumber" type="number" min="1.5" max="15" step="0.1" value="4.2">
@@ -1097,6 +1098,7 @@
     material: "طلای زرد ۱۸ عیار",
     weight: 4.2,
     detailCost: 1800000,
+    plating: "بدون آبکاری · پرداخت براق",
     goldPrice: null,
     total: null
   };
@@ -1306,6 +1308,15 @@
   weightRange.addEventListener("input", e => setWeight(e.target.value));
   weightNumber.addEventListener("input", e => setWeight(e.target.value));
 
+  const platingSelect = document.getElementById("platingSelect");
+
+  function updatePlating() {
+    state.plating = platingSelect.options[platingSelect.selectedIndex].text;
+  }
+
+  platingSelect.addEventListener("change", updatePlating);
+  updatePlating();
+
   async function loadGoldPrice() {
     const priceEl = document.getElementById("liveGoldPrice");
     const stateEl = document.getElementById("marketState");
@@ -1389,7 +1400,7 @@
     const id = `ZAR-ASTRA-${String(Date.now()).slice(-6)}`;
 
     document.getElementById("summaryDesign").textContent =
-      `طراحی: ${state.type} · ${state.style} · ${fa(state.weight, 1)} گرم`;
+      `طراحی: ${state.type} · ${state.style} · ${fa(state.weight, 1)} گرم · ${state.plating}`;
 
     document.getElementById("summaryPrice").textContent =
       `قیمت نهایی دمو: ${state.total ? toman(state.total) : "—"}`;
